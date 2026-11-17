@@ -13,8 +13,8 @@ describe("evaluatePrize", () => {
     expect(evaluatePrize([1, 2, 3, 4, 5], [1, 9], drawFront, drawBack).level).toBe("二等奖");
   });
 
-  it("returns ninth prize for two back hits", () => {
-    expect(evaluatePrize([9, 10, 11, 12, 13], [1, 2], drawFront, drawBack).level).toBe("九等奖");
+  it("defaults to the current seventh prize for two back hits", () => {
+    expect(evaluatePrize([9, 10, 11, 12, 13], [1, 2], drawFront, drawBack)).toMatchObject({ level: "七等奖", ruleVersion: "2026" });
   });
 
   it("returns no prize when fixed conditions are not met", () => {

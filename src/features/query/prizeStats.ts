@@ -1,4 +1,4 @@
-import { evaluatePrize, type PrizeLevel, PRIZE_LEVELS } from "../../domain/rules";
+import { evaluatePrizeHits, type PrizeLevel, type PrizeRuleMode, PRIZE_LEVELS } from "../../domain/rules";
 import { countHits } from "../../domain/numbers";
 import type { DltDraw, PrizeResult } from "../../types/dlt";
 
@@ -8,28 +8,23 @@ export interface PrizeHitRow {
   complete: boolean;
 }
 
-export function calcPrizeHits(draws: DltDraw[], front: number[], back: number[]) {
+export function calcPrizeHits(draws: DltDraw[], front: number[], back: number[], mode: PrizeRuleMode = "latest") {
   if (front.length < 5 || back.length < 2) return [];
   return draws.map((draw) => ({
     draw,
-    prize: evaluateCompoundPrize(front, back, draw),
+    prize: evaluateCompoundPrize(front, back, draw, mode),
     complete: draw.front.every((num) => front.includes(num)) && draw.back.every((num) => back.includes(num))
   })).filter((row) => row.prize.level !== "未中奖").reverse();
 }
 
-function evaluateCompoundPrize(front: number[], back: number[], draw: DltDraw): PrizeResult {
+export function evaluateCompoundPrize(front: number[], back: number[], draw: DltDraw, mode: PrizeRuleMode = "latest"): PrizeResult {
   const frontHits = countHits(draw.front, front);
   const backHits = countHits(draw.back, back);
-  return evaluatePrize(
-    draw.front.slice(0, Math.max(frontHits, 0)),
-    draw.back.slice(0, Math.max(backHits, 0)),
-    draw.front,
-    draw.back
-  );
+  return evaluatePrizeHits(frontHits, backHits, { mode, issue: draw.issue });
 }
 
-export function summarizePrizeHits(rows: PrizeHitRow[]) {
-  return PRIZE_LEVELS.map((level) => ({
+export function summarizePrizeHits(rows: PrizeHitRow[], levels: readonly PrizeLevel[] = PRIZE_LEVELS) {
+  return levels.map((level) => ({
     level,
     count: rows.filter((row) => row.prize.level === level).length
   }));

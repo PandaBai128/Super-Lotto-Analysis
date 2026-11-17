@@ -50,6 +50,8 @@ function PickGrid({
             key={num}
             className={selected.includes(num) ? `selected ${tone}` : ""}
             type="button"
+            aria-label={`${title.slice(0, 2)} ${String(num).padStart(2, "0")}`}
+            aria-pressed={selected.includes(num)}
             onClick={() => toggle(num)}
           >
             {String(num).padStart(2, "0")}

@@ -1,0 +1,14 @@
+.my-group-prizes { align-items: center; color: #64748b; display: flex; flex-wrap: wrap; font-size: 11px; gap: 6px 14px; padding-bottom: 12px; }
+.my-group-prizes b { color: #0f766e; font-weight: 600; }
+.my-recent-results { border-top: 1px solid #e8ecf0; padding-top: 12px; }
+.my-recent-heading { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; margin-bottom: 5px; }
+.my-recent-heading > strong { color: #475569; font-size: 12px; font-weight: 600; }
+.my-recent-heading label { align-items: center; color: #64748b; display: inline-flex; font-size: 11px; gap: 4px; }
+.my-recent-heading input { accent-color: #0f766e; height: 13px; margin: 0; min-height: 0; padding: 0; width: 13px; }
+.my-period-more { align-items: center; display: flex; flex-wrap: wrap; font-size: 11px; gap: 8px 12px; padding: 5px 0 12px; }
+.my-period-more > span { color: #94a3b8; margin-right: auto; }
+.my-period-more button { align-items: center; background: transparent; border: 0; color: #475569; display: inline-flex; font-size: 11px; gap: 3px; min-height: 28px; padding: 4px 0; }
+.my-purchase-result { margin: 0; padding-block: 10px; }
+.my-purchase-result strong { font-size: 13px; }
+.my-history .draw-match-list { margin-top: 8px; }
+.my-review-details summary:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }

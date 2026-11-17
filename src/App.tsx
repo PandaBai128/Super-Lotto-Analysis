@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { BarChart3, Database, Home, Search, Sparkles } from "lucide-react";
+import { BarChart3, Bookmark, Database, Home, Search, Sparkles } from "lucide-react";
 import { Disclaimer } from "./components/Disclaimer";
 import { baseDraws, baseMeta } from "./data/staticData";
 import { loadLocalDraws, mergeDraws } from "./data/localStore";
@@ -8,9 +8,14 @@ import { DashboardPage } from "./features/dashboard/DashboardPage";
 import { ManagePage } from "./features/manage/ManagePage";
 import { PickerPage } from "./features/picker/PickerPage";
 import { QueryPage } from "./features/query/QueryPage";
+import { MyPage } from "./features/my/MyPage";
+import { readMyTickets } from "./features/my/ticketStore";
+import type { MyTicket } from "./features/my/ticketTypes";
+import { usePrizeRuleMode } from "./hooks/usePrizeRuleMode";
 
 const tabs = [
   { key: "home", label: "首页", icon: Home },
+  { key: "my", label: "我的", icon: Bookmark },
   { key: "query", label: "查询", icon: Search },
   { key: "analysis", label: "分析", icon: BarChart3 },
   { key: "picker", label: "选号", icon: Sparkles },
@@ -18,9 +23,22 @@ const tabs = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState(() => readMyTickets().tickets.length ? "my" : "home");
   const [localDraws, setLocalDraws] = useState(() => loadLocalDraws());
+  const [queryTicket, setQueryTicket] = useState<MyTicket | null>(null);
+  const { mode: ruleMode, setMode: setRuleMode } = usePrizeRuleMode();
   const draws = useMemo(() => mergeDraws(baseDraws, localDraws), [localDraws]);
+
+  function navigate(tab: string) {
+    setQueryTicket(null);
+    setActiveTab(tab);
+  }
+
+  function querySavedTicket(ticket: MyTicket) {
+    setQueryTicket(ticket);
+    setActiveTab("query");
+    window.scrollTo(0, 0);
+  }
 
   return (
     <div className="app">
@@ -31,7 +49,7 @@ export default function App() {
         </div>
         <nav>
           {tabs.map(({ key, label, icon: Icon }) => (
-            <button key={key} className={activeTab === key ? "active" : ""} onClick={() => setActiveTab(key)} type="button">
+            <button key={key} className={activeTab === key ? "active" : ""} onClick={() => navigate(key)} type="button">
               <Icon size={18} />
               {label}
             </button>
@@ -40,8 +58,9 @@ export default function App() {
       </aside>
       <main>
         <Disclaimer />
-        {activeTab === "home" && <DashboardPage draws={draws} meta={baseMeta} onTab={setActiveTab} />}
-        {activeTab === "query" && <QueryPage draws={draws} />}
+        {activeTab === "home" && <DashboardPage draws={draws} meta={baseMeta} onTab={navigate} />}
+        {activeTab === "my" && <MyPage draws={draws} onQuery={querySavedTicket} ruleMode={ruleMode} onRuleMode={setRuleMode} />}
+        {activeTab === "query" && <QueryPage key={queryTicket?.id ?? "empty"} draws={draws} initialSelection={queryTicket ?? undefined} ruleMode={ruleMode} onRuleMode={setRuleMode} />}
         {activeTab === "analysis" && <AnalysisPage draws={draws} />}
         {activeTab === "picker" && <PickerPage draws={draws} />}
         {activeTab === "manage" && <ManagePage draws={draws} localDraws={localDraws} onLocalDraws={setLocalDraws} />}

@@ -1,10 +1,12 @@
 interface NumberBallProps {
   num: number;
   tone?: "front" | "back" | "muted";
+  matched?: boolean;
 }
 
-export function NumberBall({ num, tone = "front" }: NumberBallProps) {
-  return <span className={`number-ball number-ball--${tone}`}>{String(num).padStart(2, "0")}</span>;
+export function NumberBall({ num, tone = "front", matched }: NumberBallProps) {
+  const text = String(num).padStart(2, "0");
+  return <span className={`number-ball number-ball--${tone}${matched ? " number-ball--matched" : ""}`} title={matched === undefined ? undefined : `${text}：${matched ? "命中" : "未命中"}`}>{text}</span>;
 }
 
 export function NumberBallGroup({ nums, tone }: { nums: number[]; tone?: "front" | "back" | "muted" }) {

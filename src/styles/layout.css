@@ -8,6 +8,7 @@
   background: #111827;
   color: #f9fafb;
   padding: 22px 16px;
+  min-width: 0;
 }
 
 .brand {

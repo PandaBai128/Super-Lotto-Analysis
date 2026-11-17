@@ -1,0 +1,69 @@
+.my-page { color: #172033; }
+.my-toolbar, .my-button, .my-icon-button { align-items: center; display: inline-flex; gap: 8px; }
+.my-toolbar { flex-wrap: wrap; }
+.my-button, .my-icon-button {
+  background: #fff;
+  border: 1px solid #d6dde6;
+  border-radius: 6px;
+  color: #475569;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 12px;
+}
+.my-button { font-size: 13px; font-weight: 600; }
+.my-icon-button { flex: 0 0 36px; height: 36px; padding: 7px; width: 36px; }
+.my-button--primary { background: #172033; border-color: #172033; color: #fff; }
+.my-button--danger { background: #fff1f2; border-color: #fecdd3; color: #be123c; }
+.my-button:hover, .my-icon-button:hover { border-color: #94a3b8; }
+.my-button:disabled, .my-icon-button:disabled { cursor: not-allowed; opacity: .4; }
+.my-page button:focus-visible, .ticket-editor button:focus-visible, .my-history summary:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+.my-file-input { display: none; }
+.my-overview {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 6px 0 18px;
+}
+.my-overview-section { border-bottom: 1px solid #dde3e9; padding-bottom: 16px; }
+.my-overview-prizes { align-items: center; display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.my-overview-prizes > span:first-child { color: #64748b; font-size: 12px; }
+.my-prize-count { align-items: center; background: #e8f5f1; border-radius: 4px; color: #0f766e; display: inline-flex; font-size: 12px; gap: 12px; padding: 5px 9px; }
+.my-prize-count b { font-size: 14px; }
+.my-prize-count small { font-size: 11px; font-weight: 400; }
+.my-overview-note { color: #94a3b8; font-size: 11px; margin: 9px 0 0; }
+.my-review-range { align-items: center; display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.my-review-range > label { align-items: center; color: #475569; display: inline-flex; font-size: 13px; gap: 10px; }
+.my-review-range select { background: #fff; font-size: 13px; min-height: 34px; padding: 4px 9px; width: 130px; }
+.my-custom-range input { background: #fff; font-size: 13px; min-height: 34px; padding: 4px 8px; width: 90px; }
+.my-range-caption { color: #64748b; font-size: 12px; }
+.my-range-error { color: #b91c1c; font-size: 12px; }
+.my-overview > div { display: grid; gap: 8px; }
+.my-overview > div + div { border-left: 1px solid #dde3e9; padding-left: 22px; }
+.my-overview span { color: #64748b; font-size: 13px; }
+.my-overview strong { font-size: 28px; line-height: 1.2; }
+.my-overview small { color: #64748b; font-size: 13px; font-weight: 400; }
+.my-list-heading { align-items: center; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+.my-list-heading h3 { font-size: 16px; margin: 0; }
+.my-list-heading h3 span { color: #94a3b8; font-size: 13px; margin-left: 6px; }
+.my-list-heading label { align-items: center; color: #64748b; display: flex; font-size: 12px; gap: 8px; }
+.my-list-heading select { background: #fff; font-size: 12px; min-height: 32px; padding: 4px 8px; width: 100px; }
+.my-ticket-grid { align-items: start; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.my-empty { align-items: center; border-block: 1px dashed #cbd5e1; display: flex; flex-direction: column; padding: 56px 20px; text-align: center; }
+.my-empty > svg { color: #64748b; }
+.my-empty h3 { font-size: 18px; margin: 18px 0 0; }
+.my-empty p { color: #64748b; font-size: 13px; line-height: 1.7; margin: 10px 0 22px; }
+.my-storage-note { color: #64748b; font-size: 12px; line-height: 1.7; margin: 0; }
+.my-error, .my-message { border-left: 3px solid #0f766e; color: #0f766e; font-size: 13px; line-height: 1.6; margin: 0; padding: 8px 12px; }
+.my-error { border-color: #dc2626; color: #b91c1c; }
+.my-muted { color: #64748b; font-size: 13px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .my-overview { gap: 10px; }
+  .my-overview > div + div { padding-left: 10px; }
+  .my-overview span { font-size: 11px; }
+  .my-overview strong { font-size: 22px; }
+  .my-overview small { display: block; font-size: 11px; margin-top: 4px; }
+}

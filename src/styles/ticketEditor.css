@@ -1,0 +1,31 @@
+.ticket-editor {
+  background: #fff;
+  border: 1px solid #d6dde6;
+  border-radius: 8px;
+  color: #172033;
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  padding: 22px;
+  width: min(640px, calc(100% - 28px));
+}
+.ticket-editor::backdrop { background: #0f172a80; }
+.ticket-editor form { display: grid; gap: 18px; grid-template-rows: auto minmax(0, 1fr) auto; max-height: calc(100dvh - 78px); }
+.my-editor-body { display: grid; gap: 18px; min-height: 0; overflow-y: auto; padding: 2px; }
+.my-editor-head { align-items: center; display: flex; gap: 12px; justify-content: space-between; }
+.my-editor-head h3 { font-size: 19px; margin: 0; }
+.my-editor-fields { display: grid; gap: 14px; grid-template-columns: 1fr; }
+.my-editor-fields label { display: grid; font-size: 13px; gap: 7px; }
+.my-editor-fields small { color: #64748b; font-size: 11px; }
+.my-editor-fields input { background: #fff; font-size: 14px; min-width: 0; }
+.my-editor-footer { align-items: center; border-top: 1px solid #e5e7eb; display: flex; flex-wrap: wrap; gap: 8px; padding-top: 14px; }
+.my-editor-footer > span { color: #64748b; flex: 1; font-size: 12px; }
+.ticket-editor .pick-grid__head { font-size: 12px; }
+.ticket-editor .pick-grid__nums { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+.ticket-editor .pick-grid__nums button { font-size: 13px; padding: 0; }
+
+@media (max-width: 640px) {
+  .ticket-editor { padding: 16px; }
+  .ticket-editor form { max-height: calc(100dvh - 66px); }
+  .ticket-editor .pick-grid__nums { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .my-editor-footer > span { flex-basis: 100%; }
+}

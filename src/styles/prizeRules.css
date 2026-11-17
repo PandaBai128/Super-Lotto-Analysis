@@ -1,0 +1,13 @@
+.prize-rule-selector { align-items: center; color: #475569; display: flex; flex-wrap: wrap; font-size: 12px; gap: 8px; min-width: 0; }
+.prize-rule-switch { background: #e8edf2; border-radius: 6px; display: inline-flex; flex: 0 0 auto; gap: 3px; padding: 3px; }
+.prize-rule-switch button { background: transparent; border: 0; border-radius: 4px; color: #64748b; font-size: 12px; min-height: 30px; padding: 5px 9px; }
+.prize-rule-switch button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 3px #17203315; color: #172033; font-weight: 600; }
+.prize-rule-switch button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.prize-rule-selector .prize-rule-caption { color: #64748b; font-size: 11px; }
+.my-review-controls { align-items: center; display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.draw-match-issue .draw-match-rule { color: #64748b; font-size: 9px; }
+
+@media (max-width: 640px) {
+  .prize-rule-selector { gap: 6px 8px; }
+  .prize-rule-caption { flex-basis: 100%; }
+}

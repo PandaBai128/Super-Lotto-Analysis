@@ -1,31 +1,40 @@
-import { useMemo, useState } from "react";
-import { NumberBallGroup } from "../../components/NumberBall";
+import { useEffect, useMemo, useState } from "react";
+import { Eraser } from "lucide-react";
+import { DrawMatchList } from "../../components/DrawMatchList";
+import { DrawMatchLegend } from "../../components/MatchingNumberBalls";
 import { SectionHeader } from "../../components/SectionHeader";
-import type { PrizeLevel } from "../../domain/rules";
-import { formatNums, parseNumberInput, uniqueSorted } from "../../domain/numbers";
+import { PrizeRuleSelector } from "../../components/PrizeRuleSelector";
+import { getPrizeLevelsForDraws, type PrizeLevel, type PrizeRuleMode } from "../../domain/rules";
+import { formatNums, uniqueSorted } from "../../domain/numbers";
 import type { DltDraw } from "../../types/dlt";
 import { NumberPickPanel } from "./NumberPickPanel";
 import { PrizeLevelFilter } from "./PrizeLevelFilter";
 import { calcPrizeHits, filterPrizeHits, summarizePrizeHits } from "./prizeStats";
-import { clearSavedNumberSet, loadSavedNumberSet, sameNumberSelection, saveNumberSet } from "./savedNumbers";
-import { SavedNumbersBar } from "./SavedNumbersBar";
+import { sameNumberSelection, type NumberSelection } from "./savedNumbers";
+import { AddToMyNumbers } from "./AddToMyNumbers";
+import { QueryDrawRow } from "./QueryDrawRow";
+import { createTicket } from "../my/ticketStore";
+import { useMyTickets } from "../my/useMyTickets";
 
-export function QueryPage({ draws }: { draws: DltDraw[] }) {
+export function QueryPage({ draws, initialSelection, ruleMode, onRuleMode }: {
+  draws: DltDraw[];
+  initialSelection?: NumberSelection;
+  ruleMode: PrizeRuleMode;
+  onRuleMode: (mode: PrizeRuleMode) => void;
+}) {
   const [keyword, setKeyword] = useState("");
-  const [savedNumbers, setSavedNumbers] = useState(() => loadSavedNumberSet());
-  const [frontText, setFrontText] = useState(() => formatNums(savedNumbers?.front ?? []));
-  const [backText, setBackText] = useState(() => formatNums(savedNumbers?.back ?? []));
+  const { tickets, error, commit } = useMyTickets();
+  const [frontText, setFrontText] = useState(() => formatNums(initialSelection?.front ?? []));
+  const [backText, setBackText] = useState(() => formatNums(initialSelection?.back ?? []));
   const [visibleLevels, setVisibleLevels] = useState<PrizeLevel[]>(["一等奖", "二等奖", "三等奖"]);
   const [saveMessage, setSaveMessage] = useState("");
-  const parsedFront = uniqueSorted(parseNumberInput(frontText));
-  const parsedBack = uniqueSorted(parseNumberInput(backText));
-  const selectedFront = parsedFront.filter((num) => num >= 1 && num <= 35);
-  const selectedBack = parsedBack.filter((num) => num >= 1 && num <= 12);
-  const hasInvalidNumber = parsedFront.some((num) => num < 1 || num > 35) || parsedBack.some((num) => num < 1 || num > 12);
-  const canSave = selectedFront.length >= 5 && selectedBack.length >= 2 && !hasInvalidNumber;
-  const isCurrentSaved = Boolean(
-    savedNumbers && sameNumberSelection(savedNumbers, { front: selectedFront, back: selectedBack })
-  );
+  const parsedFront = frontText.split(/[,\s，、|]+/).filter(Boolean).map(Number);
+  const parsedBack = backText.split(/[,\s，、|]+/).filter(Boolean).map(Number);
+  const selectedFront = uniqueSorted(parsedFront.filter((num) => Number.isInteger(num) && num >= 1 && num <= 35));
+  const selectedBack = uniqueSorted(parsedBack.filter((num) => Number.isInteger(num) && num >= 1 && num <= 12));
+  const hasInvalidNumber = parsedFront.some((num) => !Number.isInteger(num) || num < 1 || num > 35) || parsedBack.some((num) => !Number.isInteger(num) || num < 1 || num > 12);
+  const canAdd = selectedFront.length >= 5 && selectedBack.length >= 2 && !hasInvalidNumber;
+  const isAdded = canAdd && tickets.some((ticket) => !ticket.targetIssue && sameNumberSelection(ticket, { front: selectedFront, back: selectedBack }));
 
   const rows = useMemo(() => {
     const kw = keyword.trim();
@@ -35,9 +44,16 @@ export function QueryPage({ draws }: { draws: DltDraw[] }) {
     }).slice(0, 120);
   }, [draws, keyword]);
 
-  const prizeRows = useMemo(() => calcPrizeHits(draws, selectedFront, selectedBack), [draws, selectedBack, selectedFront]);
-  const prizeSummary = useMemo(() => summarizePrizeHits(prizeRows), [prizeRows]);
+  const availableLevels = useMemo(() => getPrizeLevelsForDraws(draws, ruleMode), [draws, ruleMode]);
+  const prizeRows = useMemo(() => calcPrizeHits(draws, selectedFront, selectedBack, ruleMode), [draws, selectedBack, selectedFront, ruleMode]);
+  const prizeSummary = useMemo(() => summarizePrizeHits(prizeRows, availableLevels), [prizeRows, availableLevels]);
   const visiblePrizeRows = useMemo(() => filterPrizeHits(prizeRows, visibleLevels), [prizeRows, visibleLevels]);
+  useEffect(() => {
+    setVisibleLevels((previous) => {
+      const next = previous.filter((level) => availableLevels.includes(level));
+      return next.length || !previous.length ? next : availableLevels.slice(0, 3);
+    });
+  }, [availableLevels]);
 
   function updateFront(value: string) {
     setFrontText(value);
@@ -49,58 +65,53 @@ export function QueryPage({ draws }: { draws: DltDraw[] }) {
     setSaveMessage("");
   }
 
-  function handleSave() {
-    if (!canSave) {
-      setSaveMessage("请先选择至少 5 个前区号码和 2 个后区号码，且号码不能越界。");
-      return;
-    }
-
-    try {
-      setSavedNumbers(saveNumberSet({ front: selectedFront, back: selectedBack }));
-      setSaveMessage("已保存到当前浏览器。");
-    } catch {
-      setSaveMessage("保存失败，请检查浏览器是否允许本地存储。");
-    }
+  function clearSelection() {
+    setFrontText("");
+    setBackText("");
+    setSaveMessage("");
   }
 
-  function handleClearSaved() {
-    clearSavedNumberSet();
-    setSavedNumbers(null);
-    setSaveMessage("已清除保存记录，当前号码仍保留。");
+  function handleAdd() {
+    if (!canAdd || isAdded) return;
+    try {
+      const ticket = createTicket({ name: `查询添加的号码 ${tickets.length + 1}`, front: selectedFront, back: selectedBack, targetIssue: "" });
+      commit([...tickets, ticket]);
+      setSaveMessage("已添加，可在左侧“我的”中查看和编辑。");
+    } catch (cause) {
+      setSaveMessage(cause instanceof Error ? cause.message : "添加失败，请重试。");
+    }
   }
 
   return (
     <div className="page-stack">
       <SectionHeader title="查询与中奖检查" desc="按期号、日期、号码检索，也可以检查一组号码历史命中情况。" />
+      <PrizeRuleSelector mode={ruleMode} onChange={onRuleMode} />
       <div className="query-grid">
         <section className="panel">
-          <h3>历史开奖</h3>
+          <div className="query-history-heading"><h3>历史开奖</h3><DrawMatchLegend /></div>
           <input value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder="输入期号、日期或号码，如 26051 / 2026-05 / 08" />
           <div className="draw-list">
-            {rows.map((draw) => <DrawRow key={draw.issue} draw={draw} />)}
+            {rows.map((draw) => <QueryDrawRow key={draw.issue} draw={draw} front={selectedFront} back={selectedBack} />)}
           </div>
         </section>
         <section className="panel">
-          <h3>我选的号码是否中过奖</h3>
-          <div className="form-row"><label>前区</label><input placeholder="例如 01 06 14 15 17" value={frontText} onChange={(e) => updateFront(e.target.value)} /></div>
-          <div className="form-row"><label>后区</label><input placeholder="例如 02 03" value={backText} onChange={(e) => updateBack(e.target.value)} /></div>
-          <SavedNumbersBar saved={savedNumbers} isCurrent={isCurrentSaved} canSave={canSave} onSave={handleSave} onClear={handleClearSaved} />
-          {saveMessage && <p className="card-note saved-number-message">{saveMessage}</p>}
+          <div className="query-history-heading">
+            <h3>我选的号码是否中过奖</h3>
+            <button className="query-clear-selection" type="button" disabled={!frontText && !backText} onClick={clearSelection} title="清空本次选号，保留我的号码"><Eraser size={14} />清空选号</button>
+          </div>
+          <div className="form-row"><label htmlFor="query-front">前区</label><input id="query-front" placeholder="例如 01 06 14 15 17" value={frontText} onChange={(e) => updateFront(e.target.value)} /></div>
+          <div className="form-row"><label htmlFor="query-back">后区</label><input id="query-back" placeholder="例如 02 03" value={backText} onChange={(e) => updateBack(e.target.value)} /></div>
+          <AddToMyNumbers isAdded={isAdded} canAdd={canAdd && !error} onAdd={handleAdd} />
+          {(saveMessage || error) && <p role="status" className="card-note saved-number-message">{error || saveMessage}</p>}
+          {hasInvalidNumber && <p className="card-note error-text">请输入整数号码：前区 01–35，后区 01–12。</p>}
           <NumberPickPanel front={selectedFront} back={selectedBack} onFront={updateFront} onBack={updateBack} />
           {selectedFront.length >= 5 && selectedBack.length >= 2 ? (
             <>
               <PrizeSummary rows={prizeSummary} />
-              <PrizeLevelFilter selected={visibleLevels} onChange={setVisibleLevels} />
+              <PrizeLevelFilter selected={visibleLevels} onChange={setVisibleLevels} levels={availableLevels} />
               <p className="card-note">按复式票最高奖级统计：共命中 {prizeRows.length} 次，当前筛选显示 {visiblePrizeRows.length} 次；完整覆盖开奖号码 {prizeRows.filter((row) => row.complete).length} 次。</p>
-              <div className="draw-list compact">
-                {visiblePrizeRows.slice(0, 80).map(({ draw, prize }) => (
-                  <div className="draw-row" key={draw.issue}>
-                    <span>{draw.issue}</span>
-                    <b>{prize.level}</b>
-                    <small>前 {prize.frontHits} / 后 {prize.backHits}</small>
-                  </div>
-                ))}
-              </div>
+              <div className="query-prize-list"><DrawMatchList selection={{ front: selectedFront, back: selectedBack }} rows={visiblePrizeRows.slice(0, 80)} /></div>
+              {!visiblePrizeRows.length && <p className="card-note">当前奖级筛选下暂无中奖记录。</p>}
             </>
           ) : (
             <p className="card-note">请至少选择 5 个前区号码和 2 个后区号码，系统会统计历史命中奖级。</p>
@@ -120,17 +131,6 @@ function PrizeSummary({ rows }: { rows: Array<{ level: PrizeLevel; count: number
           <b>{item.count}</b>
         </span>
       ))}
-    </div>
-  );
-}
-
-function DrawRow({ draw }: { draw: DltDraw }) {
-  return (
-    <div className="draw-row">
-      <span>{draw.issue}</span>
-      <small>{draw.date}</small>
-      <NumberBallGroup nums={draw.front} />
-      <NumberBallGroup nums={draw.back} tone="back" />
     </div>
   );
 }

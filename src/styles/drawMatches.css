@@ -1,0 +1,46 @@
+.matching-number-balls .number-ball--front.number-ball--matched { background: #b91c1c; color: #fff; }
+.matching-number-balls .number-ball--back.number-ball--matched { background: #1d4ed8; color: #fff; }
+.draw-match-legend { align-items: center; color: #64748b; display: inline-flex; flex-wrap: wrap; font-size: 11px; gap: 12px; }
+.draw-match-legend > span { align-items: center; display: inline-flex; gap: 5px; }
+.draw-match-legend i { background: #fee2e2; border: 1px solid #fecaca; border-radius: 50%; height: 8px; width: 8px; }
+.draw-match-legend i.is-hit { background: #b91c1c; border-color: #b91c1c; }
+.draw-match-list { display: grid; list-style: none; margin: 0; padding: 0; }
+.draw-match-row { align-items: center; border-bottom: 1px solid #eef1f5; display: grid; gap: 10px; grid-template-columns: 76px minmax(0, 1fr) 63px; padding: 10px 0; }
+.draw-match-row:last-child { border-bottom: 0; }
+.draw-match-issue { align-self: start; display: grid; gap: 4px; padding-top: 2px; }
+.draw-match-issue strong { align-items: center; color: #475569; display: flex; flex-wrap: wrap; font-size: 12px; gap: 5px; }
+.draw-match-issue small { color: #94a3b8; font-size: 10px; }
+.draw-match-issue i { color: #0f766e; font-size: 9px; font-style: normal; font-weight: 400; }
+.draw-match-balls { display: grid; gap: 5px; min-width: 0; }
+.draw-match-balls > div { align-items: center; display: flex; gap: 6px; min-height: 24px; }
+.draw-match-balls > div > span:first-child { color: #94a3b8; flex: 0 0 24px; font-size: 10px; }
+.draw-match-balls .number-ball-group { gap: 4px; }
+.draw-match-balls .number-ball { flex: 0 0 24px; font-size: 12px; height: 24px; width: 24px; }
+.draw-match-prize { align-self: start; display: grid; gap: 5px; padding-top: 2px; text-align: right; }
+.draw-match-prize strong { color: #94a3b8; font-size: 12px; font-weight: 500; }
+.draw-match-prize span { color: #94a3b8; font-size: 10px; }
+.draw-match-row.is-win .draw-match-prize strong { color: #0f766e; font-weight: 600; }
+.query-history-heading { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
+.query-clear-selection { align-items: center; background: #fff; border: 1px solid #d6dde6; border-radius: 6px; color: #475569; display: inline-flex; flex: 0 0 auto; font-size: 12px; gap: 5px; min-height: 30px; padding: 4px 8px; }
+.query-clear-selection:disabled { cursor: not-allowed; opacity: .4; }
+.query-clear-selection:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.query-draw-row { align-items: center; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; display: grid; gap: 12px; grid-template-columns: 100px minmax(0, 1fr); padding: 10px; }
+.query-draw-meta { display: grid; gap: 4px; }
+.query-draw-meta strong { font-size: 13px; font-weight: 600; }
+.query-draw-meta small { color: #64748b; font-size: 11px; }
+.query-draw-balls { align-items: center; display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.query-draw-balls .number-ball-group { gap: 4px; }
+.query-draw-balls .number-ball { font-size: 13px; height: 26px; width: 26px; }
+.query-prize-list { max-height: 420px; overflow: auto; }
+
+@media (max-width: 640px) {
+  .query-draw-row { gap: 8px; grid-template-columns: minmax(0, 1fr); }
+  .query-draw-meta { align-items: center; display: flex; gap: 10px; }
+}
+@media (max-width: 420px) {
+  .draw-match-row { gap: 6px 10px; grid-template-columns: minmax(0, 1fr) auto; }
+  .draw-match-issue { align-items: center; display: flex; flex-wrap: wrap; gap: 5px 9px; grid-column: 1; }
+  .draw-match-prize { display: flex; flex-wrap: wrap; gap: 6px; grid-column: 2; grid-row: 1; }
+  .draw-match-prize span { display: none; }
+  .draw-match-balls { grid-column: 1 / -1; grid-row: 2; }
+}

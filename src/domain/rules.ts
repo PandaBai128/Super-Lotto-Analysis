@@ -1,41 +1,39 @@
 import type { PrizeResult } from "../types/dlt";
 import { countHits } from "./numbers";
+import { LATEST_PRIZE_RULE, resolvePrizeRule } from "./prizeRules/registry";
+import type { PrizeRuleMode } from "./prizeRules/types";
 
-const PRIZE_TABLE: Array<[number, number, string, string]> = [
-  [5, 2, "一等奖", "前区 5 个 + 后区 2 个"],
-  [5, 1, "二等奖", "前区 5 个 + 后区 1 个"],
-  [5, 0, "三等奖", "前区 5 个"],
-  [4, 2, "四等奖", "前区 4 个 + 后区 2 个"],
-  [4, 1, "五等奖", "前区 4 个 + 后区 1 个"],
-  [3, 2, "六等奖", "前区 3 个 + 后区 2 个"],
-  [4, 0, "七等奖", "前区 4 个"],
-  [3, 1, "八等奖", "前区 3 个 + 后区 1 个"],
-  [2, 2, "八等奖", "前区 2 个 + 后区 2 个"],
-  [3, 0, "九等奖", "前区 3 个"],
-  [2, 1, "九等奖", "前区 2 个 + 后区 1 个"],
-  [1, 2, "九等奖", "前区 1 个 + 后区 2 个"],
-  [0, 2, "九等奖", "后区 2 个"]
-];
-
-export const PRIZE_LEVELS = ["一等奖", "二等奖", "三等奖", "四等奖", "五等奖", "六等奖", "七等奖", "八等奖", "九等奖"] as const;
-
-export type PrizeLevel = typeof PRIZE_LEVELS[number];
+export const PRIZE_LEVELS = LATEST_PRIZE_RULE.levels;
+export { ALL_PRIZE_LEVELS } from "./prizeRules/types";
+export type { PrizeLevel, PrizeRuleMode, PrizeRuleVersion } from "./prizeRules/types";
+export { getPrizeLevelsForDraws, resolvePrizeRule } from "./prizeRules/registry";
 
 export function evaluatePrize(
   selectedFront: number[],
   selectedBack: number[],
   drawFront: number[],
-  drawBack: number[]
+  drawBack: number[],
+  options: { mode?: PrizeRuleMode; issue?: string } = {}
 ): PrizeResult {
   const frontHits = countHits(selectedFront, drawFront);
   const backHits = countHits(selectedBack, drawBack);
-  const match = PRIZE_TABLE.find(([front, back]) => front === frontHits && back === backHits);
+  return evaluatePrizeHits(frontHits, backHits, options);
+}
+
+export function evaluatePrizeHits(frontHits: number, backHits: number, options: { mode?: PrizeRuleMode; issue?: string } = {}): PrizeResult {
+  if (!Number.isInteger(frontHits) || frontHits < 0 || frontHits > 5 || !Number.isInteger(backHits) || backHits < 0 || backHits > 2) {
+    throw new Error("命中数必须为前区 0–5、后区 0–2。");
+  }
+  const rule = resolvePrizeRule(options.mode, options.issue);
+  const match = rule.table.find(([front, back]) => front === frontHits && back === backHits);
 
   return {
     level: match?.[2] ?? "未中奖",
     frontHits,
     backHits,
-    description: match?.[3] ?? "未达到固定奖级条件"
+    description: match ? `前区 ${frontHits} 个 + 后区 ${backHits} 个` : "未达到中奖条件",
+    ruleVersion: rule.version,
+    ruleLabel: rule.label
   };
 }
 

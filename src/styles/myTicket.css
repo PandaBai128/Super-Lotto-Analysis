@@ -1,0 +1,68 @@
+.my-ticket { background: #fff; border: 1px solid #e0e5eb; border-radius: 8px; min-width: 0; padding: 20px; }
+.my-ticket-head { align-items: flex-start; display: flex; gap: 10px; justify-content: space-between; }
+.my-ticket-head > div:first-child { min-width: 0; }
+.my-ticket h3 { font-size: 17px; line-height: 1.45; margin: 0 0 5px; overflow-wrap: anywhere; }
+.my-ticket-head > div > span { align-items: center; color: #64748b; display: flex; flex-wrap: wrap; font-size: 11px; gap: 6px; }
+.my-ticket-head i { background: #cbd5e1; border-radius: 50%; height: 3px; width: 3px; }
+.my-ticket-actions { display: flex; flex: 0 0 auto; gap: 4px; }
+.my-ticket-query { font-size: 11px; gap: 4px; min-height: 30px; padding: 4px 7px; }
+.my-ticket-actions .my-icon-button { border-color: transparent; height: 30px; min-height: 30px; padding: 6px; width: 30px; }
+.my-ticket-actions .my-icon-button:hover { background: #f1f5f9; }
+.my-check-result { border-left: 3px solid #cbd5e1; display: grid; gap: 5px; margin: 22px 0 18px; padding-left: 12px; }
+.my-check-result > div { align-items: center; display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: space-between; }
+.my-check-result span { color: #64748b; font-size: 12px; }
+.my-check-result strong { color: #475569; font-size: 17px; }
+.my-check-result.is-win { border-color: #0d9488; }
+.my-check-result.is-win strong { color: #0f766e; }
+.my-saved-numbers { border-bottom: 1px solid #e8ecf0; display: grid; gap: 8px; padding: 16px 0; }
+.my-number-line { align-items: start; display: grid; gap: 10px; grid-template-columns: 28px minmax(0, 1fr); }
+.my-number-line > span { color: #64748b; font-size: 12px; line-height: 32px; }
+.my-ticket .number-ball { height: 32px; width: 32px; }
+.my-ticket .my-saved-numbers .number-ball { background: #fee2e2; color: #b91c1c; }
+.my-ticket .my-saved-numbers .number-ball--back { background: #dbeafe; color: #1d4ed8; }
+.my-ticket-metrics { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 14px 0; }
+.my-ticket-metrics > div { display: grid; gap: 7px; }
+.my-ticket-metrics span { color: #64748b; font-size: 11px; }
+.my-ticket-metrics strong { font-size: 17px; line-height: 1.4; }
+.my-ticket-metrics small { color: #64748b; font-size: 11px; font-weight: 400; white-space: nowrap; }
+.my-analysis { border-top: 1px solid #e8ecf0; margin-top: 12px; padding: 13px 0 0; }
+.my-review-details summary { color: #475569; cursor: pointer; font-size: 12px; line-height: 1.7; }
+.my-review-details summary > span { color: #94a3b8; font-size: 11px; margin-left: 6px; }
+.my-analysis-verdict { font-size: 13px; line-height: 1.8; margin: 8px 0; }
+.my-shape-tags { color: #64748b; display: flex; flex-wrap: wrap; font-size: 11px; gap: 5px 12px; line-height: 1.6; }
+.my-heat-row { align-items: center; display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 0 8px; position: relative; }
+.my-heat-mix { align-items: center; color: #64748b; display: inline-flex; font-size: 12px; gap: 7px; }
+.my-heat-mix b { color: #475569; font-size: 11px; font-weight: 500; }
+.heat-hot { color: #b91c1c; }
+.heat-cold { color: #1d4ed8; }
+.my-analysis-note { color: #64748b; font-size: 11px; line-height: 1.7; margin: 5px 0 0; }
+.my-help { color: #94a3b8; cursor: help; display: inline-flex; }
+.my-help > span { background: #172033; border-radius: 6px; bottom: calc(100% + 8px); color: #fff; display: none; font-size: 12px; left: 0; line-height: 1.7; padding: 10px; position: absolute; width: min(280px, 100%); z-index: 2; }
+.my-help:hover > span, .my-help:focus > span { display: block; }
+.my-history { border-top: 1px solid #e8ecf0; }
+.my-history summary { color: #475569; cursor: pointer; font-size: 12px; line-height: 1.7; padding-top: 13px; }
+.my-history summary > span { color: #94a3b8; font-size: 11px; margin-left: 6px; }
+.my-prize-totals { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 18px 0; }
+.my-prize-totals > div { align-items: center; display: flex; gap: 5px; justify-content: space-between; }
+.my-prize-totals dt { color: #64748b; font-size: 11px; }
+.my-prize-totals dd { font-size: 14px; font-weight: 700; margin: 0; }
+.my-prize-totals small { color: #94a3b8; font-size: 10px; font-weight: 400; }
+.my-history-controls { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; margin-bottom: 12px; }
+.my-history-controls > span { color: #64748b; font-size: 11px; }
+.my-segments { background: #f1f5f9; border-radius: 6px; display: flex; gap: 3px; padding: 3px; }
+.my-segments button { background: transparent; border: 0; border-radius: 4px; color: #64748b; font-size: 12px; min-height: 28px; padding: 4px 10px; }
+.my-segments button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 3px #17203315; color: #172033; }
+.my-history-note { color: #94a3b8; font-size: 11px; line-height: 1.7; margin: 12px 0 0; }
+.my-pagination { align-items: center; color: #64748b; display: flex; font-size: 12px; gap: 10px; justify-content: flex-end; margin-top: 12px; }
+.my-delete-confirm { align-items: center; background: #fff1f2; border-radius: 6px; display: flex; flex-wrap: wrap; font-size: 12px; gap: 8px; margin-top: 12px; padding: 10px; }
+.my-delete-confirm > span { flex: 1 0 120px; }
+.my-delete-confirm .my-button { font-size: 11px; min-height: 30px; padding: 4px 8px; }
+
+@media (max-width: 640px) {
+  .my-ticket { padding: 16px; }
+  .my-ticket-metrics { gap: 8px; }
+  .my-ticket-metrics strong { font-size: 15px; }
+  .my-ticket-metrics small { display: block; margin-top: 2px; }
+  .my-prize-totals { gap: 10px 14px; }
+  .my-prize-totals > div { align-items: start; flex-direction: column; }
+}

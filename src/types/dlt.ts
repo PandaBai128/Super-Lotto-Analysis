@@ -1,3 +1,5 @@
+import type { PrizeRuleVersion } from "../domain/prizeRules/types";
+
 export type DrawSource = "dlt_history_FULL.md" | "manual" | "local-storage" | string;
 
 export interface DltDraw {
@@ -35,6 +37,8 @@ export interface PrizeResult {
   frontHits: number;
   backHits: number;
   description: string;
+  ruleVersion: PrizeRuleVersion;
+  ruleLabel: string;
 }
 
 export interface PickResult {
