@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "count": 2907,
-  "latestIssue": "26089",
-  "latestDate": "2026-08-08",
+  "count": 2941,
+  "latestIssue": "26123",
+  "latestDate": "2026-10-28",
   "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
-  "generatedAt": "2026-08-10T04:12:40.362Z"
+  "generatedAt": "2026-10-30T02:33:58.012Z"
 }

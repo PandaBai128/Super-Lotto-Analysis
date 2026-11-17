@@ -49417,5 +49417,583 @@
     ],
     "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
     "importedAt": "2026-08-10T04:12:40.358Z"
+  },
+  {
+    "issue": "26090",
+    "date": "2026-08-10",
+    "front": [
+      9,
+      14,
+      17,
+      19,
+      24
+    ],
+    "back": [
+      2,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26091",
+    "date": "2026-08-12",
+    "front": [
+      3,
+      4,
+      7,
+      12,
+      32
+    ],
+    "back": [
+      1,
+      2
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26092",
+    "date": "2026-08-15",
+    "front": [
+      12,
+      16,
+      19,
+      29,
+      33
+    ],
+    "back": [
+      7,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26093",
+    "date": "2026-08-17",
+    "front": [
+      8,
+      10,
+      22,
+      26,
+      29
+    ],
+    "back": [
+      3,
+      10
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26094",
+    "date": "2026-08-19",
+    "front": [
+      5,
+      14,
+      15,
+      17,
+      33
+    ],
+    "back": [
+      1,
+      7
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26095",
+    "date": "2026-08-22",
+    "front": [
+      4,
+      6,
+      8,
+      10,
+      14
+    ],
+    "back": [
+      4,
+      5
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26096",
+    "date": "2026-08-24",
+    "front": [
+      8,
+      9,
+      10,
+      11,
+      25
+    ],
+    "back": [
+      4,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26097",
+    "date": "2026-08-26",
+    "front": [
+      3,
+      10,
+      12,
+      20,
+      25
+    ],
+    "back": [
+      1,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26098",
+    "date": "2026-08-29",
+    "front": [
+      7,
+      9,
+      18,
+      19,
+      21
+    ],
+    "back": [
+      2,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26099",
+    "date": "2026-08-31",
+    "front": [
+      2,
+      17,
+      20,
+      29,
+      33
+    ],
+    "back": [
+      8,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26100",
+    "date": "2026-09-02",
+    "front": [
+      2,
+      6,
+      11,
+      15,
+      31
+    ],
+    "back": [
+      7,
+      8
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26101",
+    "date": "2026-09-05",
+    "front": [
+      9,
+      11,
+      18,
+      26,
+      33
+    ],
+    "back": [
+      9,
+      11
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26102",
+    "date": "2026-09-07",
+    "front": [
+      1,
+      3,
+      7,
+      27,
+      28
+    ],
+    "back": [
+      6,
+      7
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26103",
+    "date": "2026-09-09",
+    "front": [
+      3,
+      16,
+      17,
+      32,
+      35
+    ],
+    "back": [
+      2,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26104",
+    "date": "2026-09-12",
+    "front": [
+      1,
+      6,
+      14,
+      15,
+      26
+    ],
+    "back": [
+      8,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.188Z"
+  },
+  {
+    "issue": "26105",
+    "date": "2026-09-14",
+    "front": [
+      10,
+      14,
+      30,
+      33,
+      34
+    ],
+    "back": [
+      9,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.187Z"
+  },
+  {
+    "issue": "26106",
+    "date": "2026-09-16",
+    "front": [
+      14,
+      17,
+      21,
+      25,
+      28
+    ],
+    "back": [
+      4,
+      6
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.187Z"
+  },
+  {
+    "issue": "26107",
+    "date": "2026-09-19",
+    "front": [
+      2,
+      5,
+      7,
+      14,
+      22
+    ],
+    "back": [
+      4,
+      10
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.187Z"
+  },
+  {
+    "issue": "26108",
+    "date": "2026-09-21",
+    "front": [
+      1,
+      5,
+      7,
+      21,
+      35
+    ],
+    "back": [
+      1,
+      4
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-09-22T16:09:41.187Z"
+  },
+  {
+    "issue": "26109",
+    "date": "2026-09-23",
+    "front": [
+      12,
+      14,
+      16,
+      27,
+      34
+    ],
+    "back": [
+      4,
+      8
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26110",
+    "date": "2026-09-26",
+    "front": [
+      3,
+      24,
+      25,
+      26,
+      35
+    ],
+    "back": [
+      7,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26111",
+    "date": "2026-09-28",
+    "front": [
+      10,
+      11,
+      17,
+      26,
+      29
+    ],
+    "back": [
+      1,
+      3
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26112",
+    "date": "2026-09-30",
+    "front": [
+      1,
+      3,
+      5,
+      10,
+      22
+    ],
+    "back": [
+      3,
+      9
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26113",
+    "date": "2026-10-05",
+    "front": [
+      2,
+      4,
+      6,
+      10,
+      11
+    ],
+    "back": [
+      1,
+      10
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26114",
+    "date": "2026-10-07",
+    "front": [
+      8,
+      12,
+      15,
+      29,
+      30
+    ],
+    "back": [
+      9,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26115",
+    "date": "2026-10-10",
+    "front": [
+      12,
+      20,
+      32,
+      33,
+      35
+    ],
+    "back": [
+      6,
+      7
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26116",
+    "date": "2026-10-12",
+    "front": [
+      9,
+      18,
+      22,
+      25,
+      35
+    ],
+    "back": [
+      1,
+      10
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26117",
+    "date": "2026-10-14",
+    "front": [
+      4,
+      13,
+      19,
+      29,
+      31
+    ],
+    "back": [
+      2,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26118",
+    "date": "2026-10-17",
+    "front": [
+      2,
+      9,
+      21,
+      26,
+      32
+    ],
+    "back": [
+      6,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26119",
+    "date": "2026-10-19",
+    "front": [
+      3,
+      6,
+      20,
+      24,
+      32
+    ],
+    "back": [
+      4,
+      7
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26120",
+    "date": "2026-10-21",
+    "front": [
+      1,
+      6,
+      10,
+      15,
+      32
+    ],
+    "back": [
+      3,
+      4
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26121",
+    "date": "2026-10-24",
+    "front": [
+      6,
+      8,
+      19,
+      24,
+      25
+    ],
+    "back": [
+      1,
+      8
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26122",
+    "date": "2026-10-26",
+    "front": [
+      2,
+      14,
+      21,
+      22,
+      24
+    ],
+    "back": [
+      2,
+      12
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.008Z"
+  },
+  {
+    "issue": "26123",
+    "date": "2026-10-28",
+    "front": [
+      13,
+      18,
+      19,
+      20,
+      28
+    ],
+    "back": [
+      9,
+      11
+    ],
+    "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry",
+    "importedAt": "2026-10-30T02:33:58.007Z"
   }
 ]
